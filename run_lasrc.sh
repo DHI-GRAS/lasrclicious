@@ -2,7 +2,7 @@
 
 set -e
 
-if $1 == "--help"; then
+if [ $1 == "--help" ]; then
     echo "Usage: run_lasrc.sh MTL_FILE"
     exit 0
 fi
