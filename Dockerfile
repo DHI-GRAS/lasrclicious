@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
         'gcc' \
         'make' \
         'curl' \
+        'gdal-bin' \
         'libtiff-dev' \
         'libjpeg-dev' \
         'libxml2-dev' \
@@ -87,13 +88,7 @@ RUN curl -L https://github.com/USGS-EROS/espa-surface-reflectance/archive/lasrc_
     rm /tmp/lasrc.tar.gz
 ENV PREFIX=/opt/espa-surface-reflectance/build
 
-WORKDIR /opt/espa-surface-reflectance/lasrc/c_version/src
-RUN make && \
-    make install && \
-    make clean && \
-    ls -l $PREFIX
-
-WORKDIR /opt/espa-surface-reflectance/lasrc/landsat_aux/src
+WORKDIR /opt/espa-surface-reflectance/lasrc
 RUN make && \
     make install && \
     make clean && \
