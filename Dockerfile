@@ -77,8 +77,10 @@ RUN curl -L https://github.com/USGS-EROS/espa-product-formatter/archive/product_
     tar xzf /tmp/product_formatter.tar.gz && \
     mv espa-product-formatter-product_formatter_v1.15.0 /opt/espa-product-formatter && \
     rm /tmp/product_formatter.tar.gz
-WORKDIR /opt/espa-product-formatter
+
 ENV PREFIX=/opt/espa-product-formatter/build
+
+WORKDIR /opt/espa-product-formatter
 RUN make && \
     make install && \
     ls -l $PREFIX
@@ -89,9 +91,16 @@ RUN curl -L https://github.com/USGS-EROS/espa-surface-reflectance/archive/lasrc_
     tar xzf /tmp/lasrc.tar.gz && \
     mv espa-surface-reflectance-lasrc_v1.4.1 /opt/espa-surface-reflectance && \
     rm /tmp/lasrc.tar.gz
+
 ENV PREFIX=/opt/espa-surface-reflectance/build
 
 WORKDIR /opt/espa-surface-reflectance/lasrc
+RUN make && \
+    make install && \
+    make clean && \
+    ls -l $PREFIX
+
+WORKDIR /opt/espa-surface-reflectance/scripts
 RUN make && \
     make install && \
     make clean && \
@@ -103,8 +112,10 @@ RUN curl -L https://github.com/USGS-EROS/espa-cloud-masking/archive/cfmask-v2.0.
     tar xzf /tmp/cloud_masking.tar.gz && \
     mv espa-cloud-masking-cfmask-v2.0.2 /opt/espa-cloud-masking && \
     rm /tmp/cloud_masking.tar.gz
-WORKDIR /opt/espa-cloud-masking
+
 ENV PREFIX=/opt/espa-cloud-masking/build
+
+WORKDIR /opt/espa-cloud-masking
 RUN make && \
     make install && \
     make clean && \
