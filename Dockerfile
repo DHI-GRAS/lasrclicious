@@ -126,5 +126,7 @@ VOLUME ["/mnt/output-dir"]
 
 COPY run_lasrc.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/run_lasrc.sh
+
 WORKDIR /work
-CMD ["/usr/local/bin/run_lasrc.sh"]
+ENTRYPOINT ["/bin/bash", "/usr/local/bin/run_lasrc.sh"]
+CMD ["--help"]

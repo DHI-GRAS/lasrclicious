@@ -2,13 +2,18 @@
 
 set -e
 
+if $1 == "--help"; then
+    echo "Usage: run_lasrc.sh MTL_FILE"
+    exit 0
+fi
+
 WORKDIR=/tmp/work
 INDIR=/mnt/input-dir
 SCENE_ID=$(basename $1 _MTL.txt)
 OUTDIR=/mnt/output-dir
 
 for f in $INDIR/*.tif $1; do
-    ln -s $WORKDIR/$(basename $f) $f
+    ln -s $f $WORKDIR/$(basename $f)
 done
 
 mkdir -p $WORKDIR
