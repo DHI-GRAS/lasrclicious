@@ -29,7 +29,10 @@ for f in $TIF_PATTERNS; do
     fi
 done
 
-cp "$INDIR/${SCENE_ID}_MTL.txt" $WORKDIR
+MTD_FILES="$INDIR/${SCENE_ID}_MTL.txt $INDIR/${SCENE_ID}_ANG.txt"
+for f in $MTD_FILES; do
+    ln -s $f $WORKDIR
+done
 
 convert_lpgs_to_espa --mtl=${SCENE_ID}_MTL.txt
 do_lasrc.py --xml ${SCENE_ID}.xml --write_toa
