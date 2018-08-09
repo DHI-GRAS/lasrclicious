@@ -1,6 +1,13 @@
 # Lasrclicious
 Orchestrate LaSRC atmospheric correction and cloud masking. :lollipop:
 
+
+## Dependencies
+
+- Docker
+- The [LaSRC auxiliary files](http://edclpdsftp.cr.usgs.gov/downloads/auxiliaries/lasrc_auxiliary/lasrc_aux.2013-2017.tar.gz) somewhere on your machine (can be updated through [this script](https://github.com/USGS-EROS/espa-surface-reflectance/blob/master/lasrc/landsat_aux/scripts/updatelads.py) from USGS)
+
+
 ## Voll Laser wie du abgehst!
 
 Build image:
