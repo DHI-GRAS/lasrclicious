@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+shopt -s nullglob
 
 if [ $1 == "--help" ]; then
     echo "Usage: run_lasrc.sh MTL_FILE"
@@ -15,9 +16,10 @@ OUTDIR=/mnt/output-dir
 # ensure that workdir is clean
 rm -rf $WORKDIR
 mkdir -p $WORKDIR
+cd $WORKDIR
 
 # only make files with the correct scene ID visible
-for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_*.TIF" "$INDIR/${SCENE_ID}_MTL.txt"; do
+for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_*.TIF"; do
     if $(gdalinfo $f | grep -o 'Block=.*x1\s'); then
         ln -s $f $WORKDIR/$(basename $f)
     else
@@ -26,7 +28,7 @@ for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_*.TIF" "$INDIR/${SCENE_I
     fi
 done
 
-cd $WORKDIR
+cp "$INDIR/${SCENE_ID}_MTL.txt" $WORKDIR
 
 convert_lpgs_to_espa --mtl=${SCENE_ID}_MTL.txt
 do_lasrc.py --xml ${SCENE_ID}.xml --write-toa
