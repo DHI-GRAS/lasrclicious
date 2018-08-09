@@ -10,6 +10,7 @@ RUN apt-get update && \
         'curl' \
         'gdal-bin' \
         'python' \
+        'python-numpy' \
         'libtiff-dev' \
         'libjpeg-dev' \
         'libxml2-dev' \
