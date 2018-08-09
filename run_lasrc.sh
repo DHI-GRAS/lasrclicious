@@ -12,11 +12,13 @@ INDIR=/mnt/input-dir
 SCENE_ID=$(basename $1 _MTL.txt)
 OUTDIR=/mnt/output-dir
 
-for f in $INDIR/*.tif $1; do
+mkdir -p $WORKDIR
+
+# only make files with the correct scene ID visible
+for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_MTL.txt"; do
     ln -s $f $WORKDIR/$(basename $f)
 done
 
-mkdir -p $WORKDIR
 cd $WORKDIR
 
 convert_lpgs_to_espa --mtl=${SCENE_ID}_MTL.txt
