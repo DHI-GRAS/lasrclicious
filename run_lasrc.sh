@@ -32,7 +32,7 @@ done
 cp "$INDIR/${SCENE_ID}_MTL.txt" $WORKDIR
 
 convert_lpgs_to_espa --mtl=${SCENE_ID}_MTL.txt
-do_lasrc.py --xml ${SCENE_ID}.xml --write-toa
+do_lasrc.py --xml ${SCENE_ID}.xml --write_toa
 cloud_masking.py --xml ${SCENE_ID}.xml
 convert_espa_to_gtif --xml=${SCENE_ID}.xml --gtif=$SCENE_ID --del_src_files
 

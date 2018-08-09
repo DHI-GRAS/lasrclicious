@@ -3,7 +3,8 @@ MAINTAINER "Dion Häfner <dimh@dhigroup.com>"
 
 USER root
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
         'gcc' \
         'make' \
         'curl' \
@@ -20,7 +21,8 @@ RUN apt-get update && apt-get install -y \
         'libidn11-dev' \
         'zlib1g-dev' \
         'liblzma-dev' && \
-    apt-get autoremove -y
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 
 # hdfEOS
