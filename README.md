@@ -9,8 +9,14 @@ Build image:
 $ docker build -t lasrc .
 ```
 
-Do atmospheric correction and cloud masking:
+Do atmospheric correction and cloud masking for the scene 
+`LC08_L1TP_192022_20180630_20180630_01_RT`:
 
 ```bash
-$ docker run -v /path/to/inputs:/mnt/input-dir -v /path/to/outputs:/mnt/output-dir -v /path/to/lasrc-aux:/mnt/lasrc-aux -t lasrc LC08_L1TP_192022_20180630_20180630_01_RT_MTL.txt
+$ docker run \
+    -v /path/to/inputs:/mnt/input-dir:ro \
+    -v /path/to/outputs:/mnt/output-dir:rw \
+    -v /path/to/lasrc-aux:/mnt/lasrc-aux:ro \
+    --rm \
+    -t lasrc LC08_L1TP_192022_20180630_20180630_01_RT
 ```
