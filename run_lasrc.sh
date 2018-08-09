@@ -15,7 +15,7 @@ OUTDIR=/mnt/output-dir
 mkdir -p $WORKDIR
 
 # only make files with the correct scene ID visible
-for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_MTL.txt"; do
+for f in "$INDIR/${SCENE_ID}_*.tif" "$INDIR/${SCENE_ID}_*.TIF" "$INDIR/${SCENE_ID}_MTL.txt"; do
     ln -s $f $WORKDIR/$(basename $f)
 done
 
