@@ -11,6 +11,7 @@ RUN apt-get update && \
         'gdal-bin' \
         'python' \
         'python-numpy' \
+        'python-gdal' \
         'libtiff-dev' \
         'libjpeg-dev' \
         'libxml2-dev' \
