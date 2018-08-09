@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
         'make' \
         'curl' \
         'gdal-bin' \
+        'python' \
         'libtiff-dev' \
         'libjpeg-dev' \
         'libxml2-dev' \
