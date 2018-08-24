@@ -22,7 +22,7 @@ cd $WORKDIR
 
 # only make files with the correct scene ID visible
 for f in $TIF_PATTERNS; do
-    if gdalinfo $f | grep -o 'Block=.*x1\s'; then
+    if gdalinfo $f | grep -q 'Block=.*x1\s'; then
         ln -s $(readlink -f $f) $WORKDIR/$(basename $f)
     else
         # convert tiled tifs to striped layout
