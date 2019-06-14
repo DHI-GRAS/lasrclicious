@@ -28,7 +28,7 @@ RUN apt-get update && \
 
 
 # hdfEOS
-RUN curl ftp://edhs1.gsfc.nasa.gov/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00.tar.Z -o /tmp/hdfeos.tar.Z
+RUN curl https://observer.gsfc.nasa.gov/ftp/edhs/hdfeos/latest_release/HDF-EOS2.20v1.00.tar.Z -o /tmp/hdfeos.tar.Z
 RUN tar xzf /tmp/hdfeos.tar.Z -C /opt
 WORKDIR /opt/hdfeos
 RUN ./configure CC=/usr/bin/h4cc --prefix=/opt/hdfeos/build && \
