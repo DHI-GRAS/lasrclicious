@@ -12,6 +12,7 @@ RUN apt-get update && \
         'python' \
         'python-numpy' \
         'python-gdal' \
+        'python-requests' \
         'libtiff-dev' \
         'libjpeg-dev' \
         'libxml2-dev' \
@@ -102,6 +103,11 @@ RUN make && \
     make clean && \
     ls -l $PREFIX
 
+RUN make all-lasrc-aux && \
+    make install-lasrc-aux && \
+    make clean-lasrc-aux && \
+    ls -l $PREFIX
+
 WORKDIR /opt/espa-surface-reflectance/scripts
 RUN make && \
     make install && \
@@ -140,4 +146,5 @@ RUN chmod +x /usr/local/bin/run_lasrc.sh
 
 WORKDIR /work
 ENTRYPOINT ["/bin/bash", "/usr/local/bin/run_lasrc.sh"]
+#ENTRYPOINT ["/usr/bin/python", "/opt/espa-surface-reflectance/build/espa-surface-reflectance/lasrc/bin/updatelads.py"]
 CMD ["--help"]
