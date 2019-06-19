@@ -90,9 +90,9 @@ RUN make && \
 
 
 # surface reflectance
-RUN curl -L https://github.com/USGS-EROS/espa-surface-reflectance/archive/lasrc_v1.4.1.tar.gz -o /tmp/lasrc.tar.gz && \
+RUN curl -L https://github.com/DHI-GRAS/espa-surface-reflectance/archive/gras-patch.tar.gz -o /tmp/lasrc.tar.gz && \
     tar xzf /tmp/lasrc.tar.gz && \
-    mv espa-surface-reflectance-lasrc_v1.4.1 /opt/espa-surface-reflectance && \
+    mv espa-surface-reflectance-gras-patch /opt/espa-surface-reflectance && \
     rm /tmp/lasrc.tar.gz
 
 ENV PREFIX=/opt/espa-surface-reflectance/build
@@ -143,8 +143,9 @@ VOLUME ["/mnt/output-dir"]
 
 COPY run_lasrc.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/run_lasrc.sh
+COPY entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /work
-ENTRYPOINT ["/bin/bash", "/usr/local/bin/run_lasrc.sh"]
-#ENTRYPOINT ["/usr/bin/python", "/opt/espa-surface-reflectance/build/espa-surface-reflectance/lasrc/bin/updatelads.py"]
+ENTRYPOINT ["/bin/bash", "/usr/local/bin/entrypoint.sh"]
 CMD ["--help"]
