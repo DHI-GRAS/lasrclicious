@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER "Dion Häfner <dimh@dhigroup.com>"
+MAINTAINER "Jonas Sølvsteen <josl@dhigroup.com>"
 
 USER root
 
